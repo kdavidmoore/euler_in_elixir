@@ -3,6 +3,16 @@ defmodule EulerInElixir do
   Documentation for EulerInElixir.
   """
 
+  defp fib(list, limit) do
+    max = List.last(list)
+    if max <= limit do
+      new_list = get_last(list)
+      fib(new_list, limit)
+    else
+      Enum.sum(Enum.filter(list, fn x -> rem(x, 2) == 0 end))
+    end
+  end
+
   defp get_last(list) do
     Enum.take(list, -2)
       |> Enum.sum()
@@ -48,14 +58,8 @@ defmodule EulerInElixir do
       |> Enum.sum()
   end
 
-  def problem_2(list, limit) do
-    max = List.last(list)
-    if max <= limit do
-      new_list = get_last(list)
-      problem_2(new_list, limit)
-    else
-      Enum.sum(Enum.filter(list, fn x -> rem(x, 2) == 0 end))
-    end
+  def problem_2(limit) do
+    fib([1, 2], limit)
   end
   
   def problem_3(limit) do

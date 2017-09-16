@@ -11,7 +11,7 @@ defmodule EulerInElixirTest do
   end
 
   test "solves problem 2" do
-    assert EulerInElixir.problem_2([1, 2], 4000000) == 4613732
+    assert EulerInElixir.problem_2(4000000) == 4613732
   end
 
   test "solves problem 3" do
