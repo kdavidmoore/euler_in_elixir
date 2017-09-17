@@ -15,10 +15,10 @@ defmodule EulerInElixir do
 
   defp get_last(list) do
     Enum.take(list, -2)
-      |> Enum.sum()
-      |> List.wrap()
-      |> Enum.concat(list)
-      |> Enum.sort()
+    |> Enum.sum()
+    |> List.wrap()
+    |> Enum.concat(list)
+    |> Enum.sort()
   end
 
   defp equal?(x, y) do
@@ -27,17 +27,19 @@ defmodule EulerInElixir do
 
   defp palidrome?(num) do
     num
-      |> Integer.to_string()
-      |> String.reverse()
-      |> String.to_integer()
-      |> equal?(num)
+    |> Integer.to_string()
+    |> String.reverse()
+    |> String.to_integer()
+    |> equal?(num)
   end
 
-  defp get_factors(num, acc) when num <= acc, do: num
+  defp get_factors(num, acc) when num <= acc do
+    num
+  end
   defp get_factors(num, acc) when num > acc and rem(num, acc) == 0 do
     num
-      |> div(acc)
-      |> get_factors(acc + 1)
+    |> div(acc)
+    |> get_factors(acc + 1)
   end
   defp get_factors(num, acc) when num > acc and rem(num, acc) != 0 do
     get_factors(num, acc + 1)
@@ -54,8 +56,8 @@ defmodule EulerInElixir do
   def problem_1(max) do
     limit = max - 1
     Enum.to_list(1..limit)
-      |> Enum.filter(fn x -> rem(x, 5) == 0 or rem(x, 3) == 0 end)
-      |> Enum.sum()
+    |> Enum.filter(fn x -> rem(x, 5) == 0 or rem(x, 3) == 0 end)
+    |> Enum.sum()
   end
 
   def problem_2(limit) do
@@ -68,8 +70,8 @@ defmodule EulerInElixir do
 
   def problem_4(min, max) do
     Enum.to_list(min..max)
-      |> Enum.flat_map(fn x -> Enum.map(Enum.to_list(min..max), fn y -> x * y end) end)
-      |> Enum.filter(fn x -> palidrome?(x) end)
-      |> Enum.max()
+    |> Enum.flat_map(fn x -> Enum.map(Enum.to_list(min..max), fn y -> x * y end) end)
+    |> Enum.filter(fn x -> palidrome?(x) end)
+    |> Enum.max()
   end
 end
